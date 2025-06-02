@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles, TrendingUp, Smartphone, Users, Award, Zap, CheckCircle, Brain, Globe, Rocket, Building, Target, Shield } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SlideDeck = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -95,18 +96,30 @@ const SlideDeck = () => {
           ))}
         </div>
 
-        <button
-          onClick={nextSlide}
-          disabled={currentSlide === slides.length - 1}
-          className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all ${
-            currentSlide === slides.length - 1
-              ? 'bg-gray-700 text-gray-500 cursor-not-allowed' 
-              : 'bg-blue-600 text-white hover:bg-blue-700'
-          }`}
-        >
-          <span>Next</span>
-          <ChevronRight className="w-5 h-5" />
-        </button>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={nextSlide}
+            disabled={currentSlide === slides.length - 1}
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all ${
+              currentSlide === slides.length - 1
+                ? 'bg-gray-700 text-gray-500 cursor-not-allowed' 
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            <span>Next</span>
+            <ChevronRight className="w-5 h-5" />
+          </button>
+          
+          {currentSlide === slides.length - 1 && (
+            <button
+              onClick={() => navigate('/section-3')}
+              className="flex items-center space-x-2 px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-all"
+            >
+              <span>Next Section</span>
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

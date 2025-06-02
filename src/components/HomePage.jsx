@@ -117,7 +117,7 @@ const HomePage = () => {
               </div>
               <div className="flex items-center">
                 <TrendingUp className="mr-2" size={20} />
-                <span>Proven 500:1 ROI</span>
+                <span>Measurable Safety Improvements</span>
               </div>
             </div>
           </div>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronRight, ChevronLeft, Calendar, Users, Target, TrendingUp, Award, Shield, BarChart3, Rocket, CheckCircle2, AlertCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ImplementationRoadmap = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
@@ -503,18 +504,30 @@ const ImplementationRoadmap = () => {
           ))}
         </div>
 
-        <button
-          onClick={nextSlide}
-          disabled={currentSlide === slides.length - 1}
-          className={`flex items-center px-6 py-3 rounded-lg font-semibold transition-all ${
-            currentSlide === slides.length - 1
-              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              : 'bg-green-600 text-white hover:bg-green-700'
-          }`}
-        >
-          Next
-          <ChevronRight className="ml-2" size={20} />
-        </button>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={nextSlide}
+            disabled={currentSlide === slides.length - 1}
+            className={`flex items-center px-6 py-3 rounded-lg font-semibold transition-all ${
+              currentSlide === slides.length - 1
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-green-600 text-white hover:bg-green-700'
+            }`}
+          >
+            Next
+            <ChevronRight className="ml-2" size={20} />
+          </button>
+          
+          {currentSlide === slides.length - 1 && (
+            <button
+              onClick={() => navigate('/section-6')}
+              className="flex items-center px-6 py-3 rounded-lg font-semibold bg-green-600 text-white hover:bg-green-700 transition-all"
+            >
+              Next Section
+              <ChevronRight className="ml-2" size={20} />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

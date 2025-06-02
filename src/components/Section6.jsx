@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronRight, ChevronLeft, Calculator, TrendingUp, Users, Shield, Award, DollarSign, BarChart3, Zap, Globe, Target, Clock, CheckCircle2, AlertTriangle, Rocket } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ChevronRight, ChevronLeft, Calculator, TrendingUp, Users, Shield, Award, DollarSign, BarChart3, Zap, Globe, Target, Clock, CheckCircle2, AlertTriangle, Rocket, Home } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const InvestmentPartnership = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [pilotWorkers, setPilotWorkers] = useState(500);
   const [monthlyReward, setMonthlyReward] = useState(75);
@@ -589,18 +590,30 @@ const InvestmentPartnership = () => {
           ))}
         </div>
 
-        <button
-          onClick={nextSlide}
-          disabled={currentSlide === slides.length - 1}
-          className={`flex items-center px-6 py-3 rounded-lg font-semibold transition-all ${
-            currentSlide === slides.length - 1
-              ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 text-white hover:bg-blue-700'
-          }`}
-        >
-          Next
-          <ChevronRight className="ml-2" size={20} />
-        </button>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={nextSlide}
+            disabled={currentSlide === slides.length - 1}
+            className={`flex items-center px-6 py-3 rounded-lg font-semibold transition-all ${
+              currentSlide === slides.length - 1
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+          >
+            Next
+            <ChevronRight className="ml-2" size={20} />
+          </button>
+          
+          {currentSlide === slides.length - 1 && (
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center px-6 py-3 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-all"
+            >
+              <Home className="mr-2" size={20} />
+              Back to Home
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
