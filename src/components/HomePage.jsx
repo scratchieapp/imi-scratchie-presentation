@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Shield, TrendingUp, Lightbulb, Users, Calendar, DollarSign, ArrowRight, Award, Target, Globe } from 'lucide-react';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   const sections = [
     {
       id: 1,
@@ -60,8 +63,8 @@ const HomePage = () => {
   ];
 
   const handleSectionClick = (sectionId) => {
-    // Navigate to the section
-    window.location.href = `/section-${sectionId}`;
+    // Navigate to the section using React Router
+    navigate(`/section-${sectionId}`);
   };
 
   return (
@@ -190,7 +193,7 @@ const HomePage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => window.location.href = '/section-1'}
+              onClick={() => navigate('/section-1')}
               className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center"
             >
               Start Presentation
